@@ -7,10 +7,12 @@ import SinglePage from "./pages/SinglePage";
 import { Pages } from "./pages/Pages";
 
 import { Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/rooms/" component={Pages} />
