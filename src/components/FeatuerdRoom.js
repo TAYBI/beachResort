@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { RoomContext } from "../contexts/Context";
 import Loading from "./Loading";
 import Room from "./Room";
-import data from "../data";
 
 function FeatchhurdRoom() {
   let { data } = useContext(RoomContext);
@@ -10,7 +9,6 @@ function FeatchhurdRoom() {
   let { featuredRooms: rooms, loading } = data;
 
   rooms = rooms.map(room => <Room key={room.id} room={room} />);
-  console.log(loading);
   return (
     <div className="featured-rooms">
       <div className="section-title">
