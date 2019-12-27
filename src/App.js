@@ -8,17 +8,20 @@ import { Pages } from "./pages/Pages";
 
 import { Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { RoomProvider } from "./contexts/Context";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/rooms/" component={Pages} />
-        <Route exact path="/rooms/:slug" component={SinglePage} />
-        <Route component={Error} />
-      </Switch>
+      <RoomProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/rooms/" component={Pages} />
+          <Route exact path="/rooms/:slug" component={SinglePage} />
+          <Route component={Error} />
+        </Switch>
+      </RoomProvider>
     </>
   );
 }
