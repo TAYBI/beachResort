@@ -9,7 +9,16 @@ function RoomProvider({ children }) {
       rooms: [],
       sortedRooms: [],
       featuredRooms: [],
-      loading: true
+      loading: true,
+      type: "all",
+      capacity: 1,
+      price: 0,
+      minPrice: 0,
+      maxPrice: 0,
+      minSize: 0,
+      maxSize: 0,
+      breakfast: false,
+      pets: false
     }
   ]);
 
@@ -18,12 +27,19 @@ function RoomProvider({ children }) {
     // get data
     let rooms = farmatData(items);
     let featuredRooms = rooms.filter(room => room.featured === true);
+
+    let maxPrice = Math.max(...rooms.map(item => item.price));
+    let maxSize = Math.max(...rooms.map(item => item.size));
+
     setData([
       {
         rooms,
         featuredRooms,
         sortedRooms: rooms,
-        loading: false
+        loading: false,
+        price: maxPrice,
+        maxPrice,
+        maxSize
       }
     ]);
   }, []);
@@ -44,13 +60,34 @@ function RoomProvider({ children }) {
     return rooms.find(room => room.slug === slug);
   };
 
+  const handleChange = e => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    const name = e.target.name;
+
+    // console.log(`name ${name} - value ${value}`);
+
+    setData(
+      [
+        ...data,
+        {
+          [name]: value
+        }
+      ],
+      filterRoomms
+    );
+  };
+
+  const filterRoomms = () => {
+    // let tmpRooms = [...data[0].rooms];
+    console.log(data[0].rooms);
+  };
+
   return (
-    <RoomContext.Provider value={{ data, getRoom }}>
+    <RoomContext.Provider value={{ data, getRoom, handleChange }}>
       {children}
     </RoomContext.Provider>
   );
 }
 
-const RoomConsumer = RoomContext.Consumer;
-
-export { RoomProvider, RoomConsumer, RoomContext };
+export { RoomProvider, RoomContext };
