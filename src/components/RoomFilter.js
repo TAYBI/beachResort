@@ -75,6 +75,69 @@ function RoomFilter({ rooms }) {
           </select>
         </div>
         {/* end */}
+
+        {/* Room  Price */}
+        <div className="form-group">
+          <label htmlFor="price">room price {price}$</label>
+          <div className="price-input">
+            <input
+              type="range"
+              name="price"
+              id="price"
+              min={minPrice}
+              max={maxPrice}
+              value={price}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+        </div>
+        {/* end */}
+
+        {/* Room min max */}
+        <div className="form-group">
+          <label htmlFor="size">min and max size</label>
+          <div className="size-inputs">
+            <input
+              type="number"
+              name="minSize"
+              value={minSize}
+              onChange={handleChange}
+              className="size-input"
+            />
+            <input
+              type="number"
+              name="maxSize"
+              value={maxSize}
+              onChange={handleChange}
+              className="size-input"
+            />
+          </div>
+        </div>
+        {/* end */}
+
+        {/* room that have pets or breakfast or both*/}
+        <div className="form-group">
+          <div className="single-extra">
+            <input
+              type="checkbox"
+              name="pets"
+              onChange={handleChange}
+              checked={pets}
+            />
+            <label htmlFor="pets">pets</label>
+          </div>
+          <div className="single-extra">
+            <input
+              type="checkbox"
+              name="breakfast"
+              onChange={handleChange}
+              checked={breakfast}
+            />
+            <label htmlFor="breakfast">breakfast</label>
+          </div>
+        </div>
+        {/* end */}
       </form>
     </section>
   );

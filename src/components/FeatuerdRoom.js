@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Room from "./Room";
 
 function FeatchhurdRoom() {
-  let { data } = useContext(RoomContext);
+  let data = useContext(RoomContext);
 
   let { featuredRooms: rooms, loading } = data;
 

@@ -5,7 +5,7 @@ import { RoomContext } from "../contexts/Context";
 import Loading from "./Loading";
 
 function RoomContainer() {
-  const { data } = useContext(RoomContext);
+  const data = useContext(RoomContext);
   const { rooms, sortedRooms, loading } = data;
 
   if (loading) {
