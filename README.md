@@ -4,13 +4,13 @@ This is a react website project. The project was made by [Coding Addict](https:/
 
 I have write slightly different code than hi this in the tutorial, diffrent code but the same output.
 
-## This project using:
+## This project using
 
 - Context API
 - Hooks
 - Router
 - github pages
 
-## What did I learn from this project?
+## What did I learn from this project
 
 Nothing new Actually, but I have improved my react skills, now I have better understanding for what I was before.
