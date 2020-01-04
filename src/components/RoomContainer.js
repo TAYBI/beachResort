@@ -6,7 +6,7 @@ import Loading from "./Loading";
 
 function RoomContainer() {
   const { data } = useContext(RoomContext);
-  const { rooms, sortedRooms, loading } = data[0];
+  const { rooms, sortedRooms, loading } = data;
 
   if (loading) {
     return <Loading />;

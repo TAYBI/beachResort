@@ -1,26 +1,26 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { Component, createContext, useEffect, useState } from "react";
 import items from "../data";
 
 const RoomContext = createContext();
 
 function RoomProvider({ children }) {
-  const [data, setData] = useState([
-    {
-      rooms: [],
-      sortedRooms: [],
-      featuredRooms: [],
-      loading: true,
-      type: "all",
-      capacity: 1,
-      price: 0,
-      minPrice: 0,
-      maxPrice: 0,
-      minSize: 0,
-      maxSize: 0,
-      breakfast: false,
-      pets: false
-    }
-  ]);
+  let initState = {
+    rooms: [],
+    sortedRooms: [],
+    featuredRooms: [],
+    loading: true,
+    type: "all",
+    capacity: 1,
+    price: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minSize: 0,
+    maxSize: 0,
+    breakfast: false,
+    pets: false
+  };
+
+  let [data, setData] = useState(initState);
 
   // get data
   useEffect(() => {
@@ -31,17 +31,16 @@ function RoomProvider({ children }) {
     let maxPrice = Math.max(...rooms.map(item => item.price));
     let maxSize = Math.max(...rooms.map(item => item.size));
 
-    setData([
-      {
-        rooms,
-        featuredRooms,
-        sortedRooms: rooms,
-        loading: false,
-        price: maxPrice,
-        maxPrice,
-        maxSize
-      }
-    ]);
+    setData({
+      ...data,
+      loading: false,
+      rooms,
+      featuredRooms,
+      sortedRooms: rooms,
+      price: maxPrice,
+      maxPrice,
+      maxSize
+    });
   }, []);
 
   const farmatData = items => {
@@ -51,12 +50,11 @@ function RoomProvider({ children }) {
       let room = { ...item.fields, id, images };
       return room;
     });
-
     return tempItem;
   };
 
   const getRoom = slug => {
-    let rooms = [...data[0].rooms];
+    let rooms = [...data.rooms];
     return rooms.find(room => room.slug === slug);
   };
 
@@ -64,27 +62,34 @@ function RoomProvider({ children }) {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     const name = e.target.name;
-
-    // console.log(`name ${name} - value ${value}`);
-
-    setData(
-      [
-        ...data,
-        {
-          [name]: value
-        }
-      ],
-      filterRoomms
-    );
+    setData({ ...data, [name]: value }, filterRoomms());
+    const lolo = { ...data };
   };
 
   const filterRoomms = () => {
-    // let tmpRooms = [...data[0].rooms];
-    console.log(data[0].rooms);
+    const {
+      type,
+      capacity,
+      price,
+      minPrice,
+      maxPrice,
+      minSize,
+      maxSize,
+      breakfast,
+      pets
+    } = data;
+
+    let roomsTmp = [...data.rooms];
+
+    console.log(data);
+
+    // if (type !== "all") roomsTmp = roomsTmp.filter(room => room.type === type);
+
+    setData({ ...data, sortedRooms: roomsTmp });
   };
 
   return (
-    <RoomContext.Provider value={{ data, getRoom, handleChange }}>
+    <RoomContext.Provider value={{ data, handleChange, getRoom }}>
       {children}
     </RoomContext.Provider>
   );

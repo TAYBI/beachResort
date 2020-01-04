@@ -5,10 +5,11 @@ import Room from "./Room";
 
 function FeatchhurdRoom() {
   let { data } = useContext(RoomContext);
-  data = data[0];
+
   let { featuredRooms: rooms, loading } = data;
 
   rooms = rooms.map(room => <Room key={room.id} room={room} />);
+
   return (
     <div className="featured-rooms">
       <div className="section-title">
