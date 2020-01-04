@@ -12,7 +12,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0"
   },
-  "homepage": "https://TAYBI.github.io/beachResort",
+  "homepage": "https://taybi.github.io/beachResort",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
