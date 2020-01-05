@@ -9,7 +9,7 @@ I have write slightly different code than hi this in the tutorial, diffrent code
 - Context API
 - Hooks
 - Router
-- [github pages](https://taybi.github.io/beachResort/)
+- [deploy to netlify](https://hotell.netlify.com/)
 
 ## What did I learn from this project?
 
